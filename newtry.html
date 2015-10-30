@@ -1,0 +1,73 @@
+<html>
+<head>
+<title> My PlayList
+</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+
+
+<script type="text/javascript">
+function xyz(){
+var req =
+                $.ajax({
+
+                    url: "https://www.googleapis.com/youtube/v3/search",
+                    data: {
+                        part:'snippet',
+						key:'AIzaSyA24Dl0RmVN-MMJSWgCjfC3YT7n8mO-3bI',
+						q:'guruhari'},
+                    },
+                    type: 'GET',
+                    dataType: 'html',
+                });
+
+                //    success: function (d) {
+                //        alert(d.yearBuilt); 
+                //    }
+                //});
+
+                req.done(function (msg) {
+                    var text = msg;
+                    obj = JSON.parse(text);
+					alert(obj);
+ });
+
+
+
+
+                req.fail(function (jqXHR, textStatus) {
+                    alert("Request failed: " + textStatus);
+                });
+            
+        }
+
+</script> 
+
+
+</head>
+<body>
+<div id="header">
+<h1>My PlayList</h1>
+ <button onclick="xyz()">Click me</button> 
+</div>
+<hr>
+<table border="1" width="100%" height="80%">
+<tr>
+<td width ="60%">
+<p id="results"></p>
+</td>
+<td width= "40%">
+  <iframe width="420" height="315"
+src="http://www.youtube.com/embed/XGSy3_Czz8k?autoplay=1">
+</iframe> 
+
+</video> 
+</td>
+</tr>
+</table>
+
+<div id="footer">
+Copyright © Krupa Pratap Brahmkstri
+</div>
+</body>
+</html>
+
