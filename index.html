@@ -4,9 +4,14 @@
     </title>
 
     <style>
-        #waypointsTable tr:hover {
+#waypointsTable tr:hover {
     background-color:#A1A1A1;
 }
+
+button {
+    cursor:pointer;
+
+        }
 #footer {
     background-color:black;
     color:white;
@@ -75,7 +80,7 @@ padding: 0cm 2cm 3cm 2cm;
                     var x = item.snippet.thumbnails.default.url;
                     var y = item.snippet.title.substring(0, 35) + '...';
                     vidId = item.id.videoId;
-                    showvideo(data.items[0].id.videoId, data.items[0].snippet.description);
+                    showvideo(data.items[0].id.videoId);
                     var img = $('<img />', {
                         src: x,
                         height: '20%',
@@ -92,7 +97,7 @@ padding: 0cm 2cm 3cm 2cm;
                     $("#results").append("<tr><td>");
                     img.appendTo($('#results'));
                     lbl.appendTo($('#results'));
-                    $("#results").append(" <button type='button' id=" + vidId + "  onclick='showvideo(id)' style='float: right;'>></button>");
+                    $("#results").append(" <button type='button' id=" + vidId + "  onclick='showvideo(id)' style='float: right; border:none;'>></button>");
                     $("#results").append("</td>");
                     $("#results").append("</tr>");
                     $("#results").append("<hr>");
@@ -152,7 +157,7 @@ padding: 0cm 2cm 3cm 2cm;
                         $("#results").append("<tr><td>");
                         img.appendTo($('#results'));
                         lbl.appendTo($('#results'));
-                        $("#results").append(" <button type='button' id=" + vidId + " onclick='showvideo(id)' style='float: right;'>></button>");
+                        $("#results").append(" <button type='button' id=" + vidId + " onclick='showvideo(id)' style='float: right; border:none;'>></button>");
                         $("#results").append("</td>");
                         $("#results").append("</tr>");
                         $("#results").append("<hr>");
