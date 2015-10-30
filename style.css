@@ -1,21 +1,5 @@
-#header {
-    background-color:black;
-    color:white;
-    text-align:center;
-    padding:5px;
-}
-#nav {
-    line-height:30px;
-    background-color:#eeeeee;
-    height:300px;
-    width:100px;
-    float:left;
-    padding:5px;
-}
-#section {
-    width:350px;
-    float:left;
-    padding:10px;
+#waypointsTable tr:hover {
+    background-color:#A1A1A1;
 }
 #footer {
     background-color:black;
@@ -23,4 +7,33 @@
     clear:both;
     text-align:center;
     padding:5px;
+}
+#videodiv{
+ padding: 0cm 4cm 0cm 1.5cm;
+}
+.titles{
+display: block; 
+width: 100px;}
+
+button{
+padding: -2cm 1cm 2cm 0cm;
+font-weight: bold;
+color:green;
+background-color: black;
+font-size: 200%;
+height: 50px;
+width:50px;
+}
+
+.play{
+padding: 0.3cm 0.5cm 0cm 0cm;
+}
+
+label{
+color:white;
+padding: 0cm 0cm 3cm 1cm;
+}
+
+#desc{
+padding: 0cm 2cm 3cm 2cm;
 }
