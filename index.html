@@ -35,6 +35,10 @@ label{
 color:white;
 padding: 0cm 0cm 3cm 1cm;
 }
+
+#desc{
+padding: 0cm 2cm 3cm 2cm;
+}
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 
@@ -42,6 +46,7 @@ padding: 0cm 0cm 3cm 1cm;
 <script type="text/javascript">
 var vidId;
 var description;
+
 
 $(document).ready(function(){
 $("#results").empty();
@@ -57,15 +62,16 @@ q:valtogive,
 function(data){
 $("#results").empty();
 
-//alert(data);
+
 $("#results").append("<table border='1'>");
 $.each(data.items,function(i,item){
 //alert(item.id.videoId);
 var x= item.snippet.thumbnails.default.url;
 var y= item.snippet.title.substring(0,30)+'...';
 vidId= item.id.videoId;
-description= item.snippet.description;
-//alert(description);
+//description= item.snippet.description;
+
+showvideo(data.items[0].id.videoId, data.items[0].snippet.description);
 var img = $('<img />', { 
   src: x,
   height:'20%',
@@ -86,26 +92,32 @@ img.appendTo($('#results'));
 //$("#results").append(item.snippet.title);
 //$("#results").append("</label>");
 lbl.appendTo($('#results'));
-$("#results").append(" <button type='button' id="+vidId+"  onclick='showvideo(id, description)' style='float: right;'>></button>");
+$("#results").append(" <button type='button' id="+vidId+"  onclick='showvideo(id)' style='float: right;'>></button>");
 //$("#results").append("<img class ='play' src='https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSMocmajJHkOaSCt9oPC4mZ4XvquGFTS1Dh7vvojF2zDU1b1Y3DZw'  height='42' width='42' align='right' onclick='showvideo(vidId)'>");
 $("#results").append("</td>");
 $("#results").append("</tr>");
 $("#results").append("<hr>");
 })
 $("#results").append("</table>");
-$('desc').text(description);
+
+var myString = JSON.stringify(myObject);
+alert(myString);
 }
 );
+
 });
 
-function init(desc, vid){
-document.getElementById('desc').innerHTML = "";
+
+
+function init(vid){
+//document.getElementById('desc').innerHTML = "";
 var div = document.getElementById('playVideo');
 
- var details= "<embed width='520' height='415' src='https://www.youtube.com/watch?v="; 
- details+= vid;
-details+="'>";
-document.getElementById('desc').innerHTML = desc;
+ var details= "<iframe width='580' height='515' src='http://www.youtube.com/embed/"; 
+ details+= vidId; 
+details+= "?autoplay=1' frameborder='0' ></iframe>";
+
+//document.getElementById('desc').innerHTML = desc;
 }
 
 
@@ -132,7 +144,7 @@ var x= item.snippet.thumbnails.default.url;
 var y= item.snippet.title.substring(0,30)+'...';
 vidId= item.id.videoId;
 description= item.snippet.description;
-//alert(data.items[i].snippet.description);
+showvideo(data.items[0].id.videoId, data.items[0].snippet.description);
 var img = $('<img />', { 
   src: x,
   height:'20%',
@@ -153,7 +165,7 @@ img.appendTo($('#results'));
 //$("#results").append(item.snippet.title);
 //$("#results").append("</label>");
 lbl.appendTo($('#results'));
-$("#results").append(" <button type='button' id="+vidId+" onclick='showvideo(id, description)' style='float: right;'>></button>");
+$("#results").append(" <button type='button' id="+vidId+" onclick='showvideo(id)' style='float: right;'>></button>");
 //$("#results").append("<img class ='play' src='https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSMocmajJHkOaSCt9oPC4mZ4XvquGFTS1Dh7vvojF2zDU1b1Y3DZw'  height='42' width='42' align='right' onclick='showvideo(vidId)'>");
 $("#results").append("</td>");
 $("#results").append("</tr>");
@@ -166,24 +178,21 @@ $('desc').text(description);
 });
 });
 
-function showvideo(vidId, description){
+function showvideo(vidId){
 //alert(vidId);
-//alert(description);
+//alert(this.desc);
 document.getElementById('playVideo').innerHTML = "";
-document.getElementById('desc').innerHTML = "";
+//document.getElementById('desc').innerHTML = "";
 var div = document.getElementById('playVideo');
 
- var details= "<embed width='520' height='415' src='https://www.youtube.com/watch?v="; 
+ var details= "<iframe width='580' height='515' src='http://www.youtube.com/embed/"; 
  details+= vidId; 
-details+="'>";
+details+= "?autoplay=1' frameborder='0' ></iframe>";
 
 
-<!-- var details= "<iframe width='420' height='315' src='https://www.youtube.com/watch?v=";
-<!-- details+= vidId; -->
-<!-- details+= "' frameborder='0' ></iframe>"; --> -->
 div.innerHTML = details;
 //alert(div.innerHTML);
-document.getElementById('desc').innerHTML = "";
+//document.getElementById('desc').innerHTML = "";
 //document.getElementById('desc').innerHTML = description;
 }
 
@@ -223,18 +232,14 @@ document.getElementById('desc').innerHTML = "";
 </td>
 <td width= "60%">
 <center>
-  <!-- <iframe id="playVideo" width="420" height="315"
-src="http://www.youtube.com/embed/XGSy3_Czz8k?autoplay=1">
-</iframe>  -->
 <div id="playVideo">
 </div>
-<br>
+<!-- <br> -->
 </center>
-<p id="videodiv">
-Description: 
-<div id="desc">
+<!-- <p id="videodiv">
+<div id="desc" style="color:#FFFFFF">
 </div>
-</p>
+</p> -->
 </td>
 </tr>
 </table>
